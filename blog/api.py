@@ -1,7 +1,7 @@
 import time
 import requests as req
 import webbrowser
-from my_blog import *
+from my_blog.settings import *
 
 
 
