@@ -1,0 +1,268 @@
+{% extends 'index.html' %}
+
+
+
+{% block body %}
+{% load static %}
+{% load blog_filter %}
+
+{% comment %} search querry {% endcomment %}
+
+{% block form %}
+
+{% endblock form %}
+
+
+<!-- masonry
+    ================================================== -->
+    <section class="s-bricks">
+
+        <div class="masonry">
+            <div class="bricks-wrapper h-group">
+ 
+                <div class="grid-sizer"></div>
+
+                {% comment %} <div class="brick entry featured-grid animate-this">
+                    <div class="entry__content">
+
+                        <div class="featured-post-slider">
+                            
+
+                            {% if fea_data %}
+
+                            {% for y in fea_data %}
+
+                            <div class="featured-post-slide">
+                                <div class="f-slide">
+                                    
+                                    <div class="f-slide__background" style="background-image:url('{{url}}{{y.poster_path}}');"></div>
+                                    <div class="f-slide__overlay"></div>
+
+                                    <div class="f-slide__content">
+                                        <ul class="f-slide__meta">
+                                            <li>{{ y.release_date }}</li> 
+                                            <li><a href="#" >{{y.vote_average}}/10</a></li>
+                                        </ul>	
+
+                                        <h1 class="f-slide__title"><a href="single-standard.html" title="">{{y.title}}</a></h1> 
+                                    </div>
+
+                                </div> <!-- f-slide -->
+                            </div> <!-- featured-post-slide -->
+
+                            {% endfor %}
+
+                            {% endif %}
+
+
+
+                        </div> <!-- end feature post slider -->
+                        
+                        <div class="featured-post-nav">
+                            <button class="featured-post-nav__prev">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12.707 17.293L8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z"></path></svg>
+                            </button>
+                            <button class="featured-post-nav__next">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11.293 17.293l1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"></path></svg>
+                            </button>
+                        </div> <!-- featured-post-nav -->
+
+                    </div> <!-- end entry content -->
+                </div> <!-- end entry, featured grid --> {% endcomment %}
+
+ 
+
+                {% if data.results %}
+                {% for i in data.results %}
+                <article class="brick entry format-standard animate-this">
+    
+                    <div class="entry__thumb">
+                        <a href="/movie/{{i.id}}-{{i.title|slugify}}" class="thumb-link">
+                            {% if i.poster_path %}
+                            <img src="{{url}}{{i.poster_path}}"
+                                 srcset="{{url}}{{i.poster_path}} 1x, {{url}}{{i.poster_path}} 2x" alt="{{i.title}}">
+                                 {% endif %}
+                        </a>
+                    </div> <!-- end entry__thumb -->
+    
+                    <div class="entry__text">
+                        <div class="entry__header">
+    
+                            <div class="entry__meta">
+                                <span class="entry__cat-links">
+
+                                    {% for y in i.genre_ids %}
+                                    {% for z in genre %}
+                                        {% if y == z.id  %}
+                                            <a href="#">{{z.name}}</a>
+                                            {{break}}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+
+                                </span>
+                            </div>
+    
+                            <h1 class="entry__title"><a href="/movie/{{i.id}}-{{i.title|slugify}}">{{i.title}}</a></h1>
+                            
+                        </div>
+                        <div class="entry__excerpt">
+                            <p>
+                                {{i.overview}}
+                            </p>
+                        </div>
+                    </div> <!-- end entry__text -->
+    
+                </article> <!-- end entry -->
+                {% endfor %}
+                {% else %}
+                    <center><h4>No Result Found</h4></center>
+                    
+                {% endif %}
+                
+
+                
+                {% comment %} quats
+                <article class="brick entry format-quote animate-this" >
+    
+                    <div class="entry__thumb">
+                        <blockquote>
+                            <p>Good design is making something intelligible and memorable. Great design is making something memorable and meaningful.</p>
+    
+                            <cite>Dieter Rams</cite>
+                        </blockquote>
+                    </div>
+    
+                </article> <!-- end article -->
+                
+                {% comment %} img slider 
+                <article class="brick entry format-gallery animate-this">
+ 
+                    <div class="entry__thumb slider">
+                            <div class="slider__slides">
+                                <div class="slider__slide">
+                                    <img src="{% static 'images/thumbs/masonry/gallery/slide-1-600.jpg' %}" 
+                                         srcset="{% static 'images/thumbs/masonry/gallery/slide-1-600.jpg' %} 1x, images/thumbs/masonry/gallery/slide-1-1200.jpg 2x" alt=""> 
+                                </div>
+                                <div class="slider__slide">
+                                    <img src="{% static 'images/thumbs/masonry/gallery/slide-2-600.jpg' %}" 
+                                         srcset="images/thumbs/masonry/gallery/slide-2-600.jpg 1x, images/thumbs/masonry/gallery/slide-2-1200.jpg 2x" alt="">
+                                </div>
+                                <div class="slider__slide">
+                                    <img src="{% static 'images/thumbs/masonry/gallery/slide-3-600.jpg' %}" 
+                                         srcset="images/thumbs/masonry/gallery/slide-3-600.jpg 1x, images/thumbs/masonry/gallery/slide-3-1200.jpg 2x" alt="">  
+                                </div>
+                            </div>    
+                    </div> <!-- end entry__thumb -->
+ 
+                    <div class="entry__text">
+                        <div class="entry__header">
+    
+                            <div class="entry__meta">
+                                <span class="entry__cat-links">
+                                    <a href="#">Vacation</a>
+                                </span>
+                            </div>
+    
+                            <h1 class="entry__title"><a href="single-gallery.html">The Best Tropical Leaves Images.</a></h1>
+                            
+                        </div>
+                        <div class="entry__excerpt">
+                            <p>
+                                Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua cillum in consequat consequat in culpa in anim.
+                            </p>
+                        </div>
+                    </div> <!-- end entry__text -->
+                
+                 </article> <!-- end article -->
+ 
+                 <article class="brick entry format-link animate-this">
+ 
+                    <div class="entry__thumb">
+                        <div class="link-wrap">
+                            <p>Looking for affordable &amp; reliable web hosting? We recommend Dreamhost.</p>
+                            <cite>
+                                <a target="_blank" href="http://www.dreamhost.com/r.cgi?287326">http://www.dreamhost.com</a>
+                            </cite>
+                        </div>
+                    </div> <!-- end entry__thumb -->
+                
+                </article> <!-- end article --> {% endcomment %}
+ 
+        </div> <!-- end masonry -->
+
+        {% if data.results %}{% else %}<br><br><br><br>{% endif %}
+
+
+        <div class="row">
+            <div class="column large-12">
+                <nav class="pgn">
+                    <ul>
+                        {% if data %}
+                        {% if final_pg != None %}
+                        {% comment %} {% for i in total_pg %} {% endcomment %}
+                        {% if data.page != 1 %}
+                        <li>
+                            <a class="pgn__prev" href="/search/?s={{search}}&page={{prev_pg}}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12.707 17.293L8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z"></path></svg>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% if data.page == 1 %}
+                            <li><a href="/search/?s={{search}}&page=1"><span class="pgn__num current">1</span></a></li>
+                        {% else %}
+                            <li><a href="/search/?s={{search}}&page=1"><span class="pgn__num ">1</span></li>
+                        {% endif %}
+
+                        {% comment %} {% elif i >= 6 and i <= total_pg_no %}
+                            {{break}}
+                        {% else %} {% endcomment %}
+                        <li><span class='dot'></span></li>
+                        <li><span class='dot'>...</span></li>
+                        <li><span class='dot'></span></li>
+                        {% if data.page == 1 or data.page == final_pg %}
+                            {% if final_pg|divisibleby:'2' %}
+                            <li><a class="pgn__num " href="/search/?s={{search}}&page={{final_pg|div:'2'}}">{{final_pg|div:'2'}}</a></li>
+                            {% else %}
+                            <li><a class="pgn__num" href="/search/?s={{search}}&page={{final_pg|add:'0.5'}}">{{final_pg|add:'0.5'}}</a></li>
+                            {% endif %}
+                        {% else %}
+                        <li><a class="pgn__num current" href="/search/?s={{search}}&page={{data.page}}">{{data.page}}</a></li>
+                        {% endif %}
+                            
+                        <li><span class='dot'></span></li>
+                        <li><span class='dot'>...</span></li>
+                        <li><span class='dot'></span></li>
+                        {% if data.page == final_pg %}
+                            <li><a class="pgn__num current" href="/search/?s={{search}}&page={{final_pg}}">{{final_pg}}</a></li>
+                        {% else %}
+                            <li><a class="pgn__num" href="/search/?s={{search}}&page={{final_pg}}">{{final_pg}}</a></li>
+                        {% endif %}
+                        {% comment %} {% endif %} {% endcomment %}
+                        {% comment %}
+                        <li><a class="pgn__num" href="#0">3</a></li>
+                        <li><a class="pgn__num" href="#0">4</a></li>
+                        <li><a class="pgn__num" href="#0">5</a></li>
+                        <li><a class="pgn__num" href="#0">8</a></li> {% endcomment %}
+                        {% if data.page != final_pg %}
+                        <li>
+                            <a class="pgn__next" href="/search/?s={{search}}&page={{next_pg}}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11.293 17.293l1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"></path></svg>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% else %}
+                        <li><a href="/search/?s={{search}}&page=1"><span class="pgn__num current">1</span></a></li>
+                        {% comment %} {% endfor %} {% endcomment %}
+                        {% endif %}
+                        {% endif %}
+                    </ul>
+                </nav> <!-- end pgn -->
+            </div> <!-- end column -->
+        </div> <!-- end row -->
+
+    </section> <!-- end s-bricks -->
+
+    
+
+{% endblock body %}

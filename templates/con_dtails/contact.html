@@ -1,0 +1,100 @@
+{% extends 'index.html' %}
+
+{% block tittle %}Contact Us{% endblock tittle %}
+
+{% block home %}{% endblock home %}
+{% block contact %}class="current"{% endblock contact %}
+
+{% block body %}
+
+{% load static %}
+
+    <!-- content
+================================================== -->
+<section class="s-content site-page">
+    <div class="row">
+        <div class="column large-12">
+
+            <section>
+
+                <div class="s-content__media">
+                    <img src="{% static 'images/thumbs/contact/contact-1050.jpg' %}" 
+                            srcset="{% static 'images/thumbs/contact/contact-2100.jpg' %} 2100w, 
+                                    {% static 'images/thumbs/contact/contact-1050.jpg' %} 1050w, 
+                                    {% static 'images/thumbs/contact/contact-525.jpg' %} 525w" sizes="(max-width: 2100px) 100vw, 2100px" alt="">
+                </div> <!-- end s-content__media -->
+
+                <div class="s-content__primary">
+
+                    <h1 class="s-content__title">Get In Touch With Us.</h1>	
+
+                    <p class="lead">Visitors may have different needs and preferences – generally, businesses should try to include as much contact information as possible in case one might prefer email over calling first. Of course, this may not work in your company’s situation, so keep your specific priorities in mind.</p> 
+
+                    <p>Even if you’ve provided information like phone numbers or emails, a contact form still makes it extremely convenient for a customer to take the next step with your business. Every contact form should include boxes for website users to fill out their: </p>
+                    <ul>
+                        <li>Name</li>
+                        <li>Contact information</li>
+                        <li>Reason for messaging your business</li>
+                    </ul>
+                        <p>You can get more specific if you’d like. For example, it might make sense for you to ask them to leave their company name or get the parameters for the potential project they’re inquiring about.</p>
+                    
+                    <hr>
+
+                    {% comment %} <div class="row block-large-1-2 block-tab-full s-content__blocks">
+                        <div class="column">
+                            <h4>Where to Find Us</h4>
+                            <p>
+                            1600 Amphitheatre Parkway<br>
+                            Mountain View, CA<br>
+                            94043 US
+                            </p>
+                        </div>
+
+                        <div class="column">
+                            <h4>Contact Info</h4>
+                            <p>
+                            someone@abstractwebsite.com<br>
+                            info@abstractwebsite.com <br>
+                            Phone: (+63) 555 1212
+                            </p> 
+                        </div>
+                    </div> <!-- end s-content__blocks --> {% endcomment %}
+
+                    <form name="cForm" id="cForm" class="s-content__form" method="post" action="">
+                        
+                        <fieldset>
+                            {% csrf_token %}
+                            <div class="form-field">
+                                <input name="cName" type="text" id="cName" class="h-full-width" placeholder="Your Name" value="">
+                            </div>
+
+                            <div class="form-field">
+                                <input name="cEmail" type="email" id="cEmail" class="h-full-width" placeholder="Your Email" value="">
+                            </div>
+
+                            <div class="form-field">
+                                <input name="cWebsite" type="text" id="cWebsite" class="h-full-width" placeholder="Website"  value="">
+                            </div>
+
+                            <div class="message form-field">
+                                <textarea name="cMessage" id="cMessage" class="h-full-width" placeholder="Your Message" ></textarea>
+                            </div>
+
+                            <button type="submit" class="submit btn btn--primary btn--medium h-full-width">Submit</button>
+
+                        </fieldset>
+                    </form> <!-- end form -->
+
+                </div> <!-- end s-content__primary -->
+
+            </section>
+
+        </div> <!-- end column -->
+    </div> <!-- end row -->
+</section> <!-- end s-content -->
+
+<hr>
+
+
+
+{% endblock body %}

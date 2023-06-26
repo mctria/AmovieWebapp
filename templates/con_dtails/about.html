@@ -1,0 +1,83 @@
+{% extends 'index.html' %}
+
+{% block tittle %}About Us{% endblock tittle %}
+
+{% block home %}{% endblock home %}
+{% block about %}class="current"{% endblock about %}
+
+{% block body %}
+
+{% load static %}
+
+    <!-- content
+    ================================================== -->
+    <section class="s-content">
+        <div class="row">
+            <div class="column large-12">
+
+                <section>
+
+                    <div class="s-content__media">
+                        <img src="{% static 'images/thumbs/about/about-1050.jpg' %}" 
+                             srcset="{% static 'images/thumbs/about/about-2100.jpg' %} 2100w, 
+                                     {% static 'images/thumbs/about/about-1050.jpg' %} 1050w, 
+                                     {% static 'images/thumbs/about/about-525.jpg' %} 525w" sizes="(max-width: 2100px) 100vw, 2100px" alt="">
+                    </div> <!-- end s-content__media -->
+
+                    <div class="s-content__primary">
+
+                        <h1 class="s-content__title">Learn More About Us.</h1>	
+
+
+                        
+
+ 
+
+
+
+                        <p class="lead">In an increasingly saturated media landscape, film buffs are constantly looking for new ways to discover and share their love of cinema. Blogging has become one of the most accessible and effective ways of doing this.</p> 
+
+                        <p> You may have heard about movie blogs before, but what exactly are they? Movie blogs or movie blog sites are websites that are dedicated to movies. Usually created and maintained by a single author or a small team, these blogs feature articles about movies or movie stars on a regular basis. </p>
+
+                        <p>These blogs can be general in scope or cater to niche interests such as horror films, biographical documentaries, silent films, or independent productions.</p>
+
+                        <hr>
+
+                        <div class="row block-large-1-2 block-tab-full s-content__blocks">
+                            <div class="column">
+                                <h4>Who.</h4>
+                                <p>Do you love movies? Do you love reading blog posts about movies? Have you ever stumbled across a website or blog that’s solely dedicated to reviewing, analyzing, and breaking down new and classic films? If the answer to any of these questions is “yes” – then you’re in luck! </p>
+
+                                    <p>Is That A Movie Blog - '<a href="/">A</a>' Movie Blog</p>
+                            </div>
+
+                            <div class="column">
+                                <h4>When.</h4>
+                                <p>There are people who spend hours upon hours coming up with theories about how our favorite movies and shows fit together. They’re called movie bloggers, and their job is to analyze films and their various subtexts. These blogs can be found all over the Internet, but there are a few that stand out. These movie bloggers have built followings by creating content that resonates with their followers. Here is a list of some of the most popular movie blogs online today.</p>
+                            </div>
+
+                            <div class="column">
+                                <h4>What.</h4>
+                                <p>As with any form of art, movie blogging is a creative outlet that allows you to share your voice and hone your storytelling skills. What sets movie blogging apart from other forms of blog writing is the ability to discuss films in-depth and offer your audience something they can’t find anywhere else.
+                                    In this article, we’ll explore everything you need to know about movie blogging. From the different sub-genres of film blogs to advice on how to start your own blog, we cover plenty of helpful tips and tricks for anyone interested in pursuing this career. So read on, and get started today!</p>
+                            </div>
+
+                            <div class="column">
+                                <h4>How.</h4>
+                                <p>Reading blogs and staying connected with the world of digital photography can be so much fun. You are constantly learning new things, as well as getting to know lots of interesting people. But there’s more to it than that. Blogs also serve as a way for us to connect with other like-minded individuals. To help you find the best blogs out there, we’ve compiled a list of some of our very favorites in this blog post.
+                                    Which blog is your favorite? Are there any great blogs that we missed? Let us know in the comments below!</p>
+                            </div>
+
+                        </div>
+
+                    </div> <!-- end s-content__primary -->
+
+                </section>
+
+            </div> <!-- end column -->
+        </div> <!-- end row -->
+    </section> <!-- end s-content -->
+
+<hr>
+
+    {% endblock %}

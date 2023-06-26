@@ -1,0 +1,311 @@
+{% extends 'index.html' %}
+
+{% comment %} {% block css %}
+
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+{% endblock css %} {% endcomment %}
+
+{% block tittle %}{{data.title}}{% endblock tittle %}
+
+{% block body %}
+
+{% load static %}
+{% load humanize %}
+
+<!-- style sheet -->
+<style>
+    .parent{
+        display:flex;
+    }
+    img{
+        width: 100%;
+        height: auto;
+    }
+    .left{
+        flex-direction: row;
+        flex-basis: 50%;
+    }
+    .right{
+        margin: 10% 0 15% 0;
+        padding: 2% 2% 0 0;
+        flex-basis: 50%;
+        background-color: var(--color-gray-2);
+        box-shadow: 20px 20px 7px 2px;
+    }
+    .righ_li{
+        list-style: none;
+    }
+    .mov_rec{
+        display: flex;
+    }
+    ._rec{
+        flex-basis: 19%;
+        margin-left: 1%;
+    }
+    .h6{
+        margin: 0;
+    }
+    @media (max-width:600px){
+        .parent{
+            display:block;
+        }
+        .rec_img{
+            max-width: 60px;
+        }  
+        .h6{
+            font-size: x-small;
+        }
+    }
+    @media (max-width:800px){
+        .parent{
+            display:block;
+        }
+        .rec_img{
+            max-width:80%;
+        }
+        .h6{
+            font-size: small;
+        }
+    }
+    @media (max-width:1200px){
+        .parent{
+            display:block;
+        } 
+        .right{
+            margin-left: -10%;
+            padding: 10px 10px 20px 0;
+        }
+    }
+
+</style>
+
+
+
+
+
+
+
+<!-- content
+    ================================================== -->
+    <section class="s-content s-content--single">
+        <div class="row">
+            <div class="column large-12">
+
+                    <div class="s-content__primary">
+
+                        <h2 class="s-content__title s-content__title--post">{{data.title}}</h2>
+
+                        <ul class="s-content__post-meta">
+                            <li class="date">{{data.release_date}}</li>
+                            <li class="cat">
+                                
+                                {% for g in data.genres %}
+                                    <a href="#">{{g.name}}</a>
+                                {% endfor %}
+                                    
+                            </li>
+                        </ul>
+
+                        <div class="parent">
+                            <div class="left">
+                                <img src="{{img_url}}{{data.poster_path}}"/>
+                            </div>
+                            <div class="right">
+                                <ul class="rig_ul">
+                                    <!-- <li class="righ_li"><p>Genres</p> : <a href="/{{data.genres.0.name}}">{{data.genres.0.name}}</a></li> -->
+                                    <li class="righ_li"><p>Vote_average : <a style="cursor: default;">{{data.vote_average}}</a></p></li>
+                                    <li class="righ_li"><p>Status : <a style="cursor: default;">{{data.status}}</a></p></li>
+                                    <li class="righ_li"><p>Runtime : <a style="cursor: default;">{{data.runtime}} min</a></p></li>
+                                    <li class="righ_li"><p>Revenue : <a style="cursor: default;">${{data.revenue|intword}}</a></p></li>
+                                    {% if data.tagline %}
+                                    <li class="righ_li"><p>Tagline : <a style="cursor: default;">{{data.tagline}}</a></p></li>
+                                    {% endif %}
+                                    {% if data.homepage %}
+                                    <li class="righ_li"><p>Watch_Now : <a target="_blank" 
+                                        {% if s_link.shortenedUrl %}
+                                            href="{{s_link.shortenedUrl}}"
+                                        {% else %}
+                                            href="{{data.homepage}}"
+                                        {% endif %}
+                                        >{{data.homepage}}</a></p></li>
+                                        {% endif %}
+                                    <li class="righ_li"><p>Budget : <a style="cursor: default;">${{data.budget|intword}}</a></p></li> 
+                                </ul>
+                            </div>
+                        </div>
+
+
+                        {% comment %} <div>
+                            <h2>Watch Movies On</h2>
+                            {% for x in w_prob %}
+                            <div>{{x}}
+                                <img src="{{img_url}}{{x.logo_path}}" alt="{{x.provider_name}}">
+                                <div>
+                                    <h6><a href="#">{{x.provider_name}}</a></h6>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div> {% endcomment %}
+
+                        
+                        <h2>Summary</h2>
+                        <p class="lead">{{data.overview}} </p> 
+
+
+                        
+                        {% if creadit %}
+                            
+                        <h2>Main Casts</h2>
+
+                        {% for i in creadit %}
+                        <div class="s-content__author">
+                            <img src="{{img_url}}{{i.profile_path}}" alt="{{i.name}}">
+
+                            <div class="about">
+                                <h5><a href="#">{{i.name}}</a></h5>
+                                <h5><p style="cursor: default;">{{i.character}}</p></h5>
+                            
+                                {% comment %} 
+                                <ul class="author-social">
+                                    <li><a href="#0">Facebook</a></li>
+                                    <li><a href="#0">Twitter</a></li>
+                                    <li><a href="#0">Dribbble</a></li>
+                                    <li><a href="#0">Instagram</i></a></li>
+                                </ul> {% endcomment %}
+                            </div>
+                        </div> <!-- end s-content__author -->
+
+                        {% endfor %}
+                        {% endif %}
+                        
+
+                    </div> <!-- end s-content__primary -->
+
+                    
+                    {% if movie_rec %}
+                        
+                    <h2>Movie Recomendation</h2>
+                    <br>
+                    <div class="mov_rec">
+                    {% for i in movie_rec %}
+                    
+                    <div class="_rec">
+                        <a href="/movie/{{i.id}}-{{i.title|slugify}}"><img class="rec_img" src="{{img_url}}{{i.poster_path}}"/></a>
+                        <p class="h6"><a href="/movie/{{i.id}}-{{i.title|slugify}}">{{i.title}}</a></p>
+                    </div><br>
+                    {% endfor %}
+                        
+                    {% endif %}
+                    
+                    </div>
+
+            </div> <!-- end column -->
+        </div> <!-- end row -->
+
+
+        <!-- comments
+        ================================================== -->
+        
+        {% if data.production_companies %}
+        <div class="comments-wrap">
+
+            <div id="comments" class="row">
+                <div class="column">
+                    
+                        
+                        
+                    <h3>{{data.production_companies|length}} Companies</h3>
+
+                    <!-- START commentlist -->
+                    <ol class="commentlist">
+
+                        {% for i in data.production_companies %}
+                          
+
+                        <li class="depth-1 comment">
+
+                            <div class="comment__avatar">
+                                <img class="avatar" src="{{img_url}}{{i.logo_path}}" alt="" width="50" height="50">
+                            </div>
+
+                            <div class="comment__content">
+
+                                <div class="comment__info">
+                                    <div class="comment__author">{{i.name}}</div>
+
+                                    <!-- <div class="comment__meta">
+                                        <div class="comment__time">Sept 05, 2020</div>
+                                        <div class="comment__reply">
+                                            <a class="comment-reply-link" href="#0">Reply</a>
+                                        </div>
+                                    </div>
+                                </div> -->
+
+                                <div class="comment__text">
+                                <p>Country :{{i.origin_country}}</p>
+                                </div>
+
+                            </div>
+
+                        </li> <!-- end comment level 1 -->
+
+                        
+                        {% endfor %}
+
+                       
+
+                    </ol>
+                    <!-- END commentlist -->
+
+                </div> <!-- end col-full -->
+            </div> <!-- end comments -->
+
+
+
+        </div> <!-- end comments-wrap -->
+        
+        {% endif %}
+
+        <div class="row">
+            <div class="column large-12">
+                <div class="Movies_like">
+
+                    
+                    {% if similar_move %}
+                        
+                    <h2>Similar Movies</h2>
+                    <br>
+                    <div class="mov_rec">
+                    {% for c in similar_move %}
+                    
+                    <div class="_rec">
+                        <a href="/movie/{{c.id}}-{{c.title|slugify}}"><img class="rec_img" src="{{img_url}}{{c.poster_path}}"/></a>
+                        <p class="h6"><a href="/movie/{{c.id}}-{{c.title|slugify}}">{{c.title}}</a></p>
+                    </div><br>
+                    {% endfor %}
+                        
+                    {% endif %}
+                    
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section> <!-- end s-content -->
+    <hr>
+
+{% endblock body %}
+
+
+
+
+
+
+
+
+
+
+
