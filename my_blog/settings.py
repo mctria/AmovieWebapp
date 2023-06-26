@@ -142,3 +142,6 @@ MEDIA_ROOT = (
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+api_v3 = 'Enter Your Api V3 Key'
+api_v4 = 'Enter Your Api V4 key
