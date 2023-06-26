@@ -1,6 +1,7 @@
 import time
 import requests as req
 import webbrowser
+from my_blog import *
 
 
 
@@ -8,10 +9,10 @@ base_url = 'https://api.themoviedb.org/'
 base_url_sl = 'https://exe.io/api?'
 
 # base_url+'/3'
-api_key_v3 = '886f45aceef91357640893d9a9bc8395'
+api_key_v3 = api_v3
 api_ls = '683bf923a09b3aeb821e42112a762f1e765947f4'
 # base_url+'/4'
-api_key_v4 = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ODZmNDVhY2VlZjkxMzU3NjQwODkzZDlhOWJjODM5NSIsInN1YiI6IjYyYTFmNDBiODUwMDVkMDBhY2I2OThkMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vGoKyHc0NtDjvfrdNQS6mSum0vMfkeHuzDj1Qlef_Cc'
+api_key_v4 = api_v4
 
 
 
