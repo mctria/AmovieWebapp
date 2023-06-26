@@ -30,10 +30,9 @@ https://developer.themoviedb.org/reference/intro/getting-started
 ## Step 4
 
 Add Your API to the Settings.py file
-
-```
-
-```
+From my_blog/settings.py
+- change api_v3 to your api_v3 api key
+- change api_v4 to your v4 api key
 
 ## Step 5
 
